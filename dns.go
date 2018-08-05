@@ -12,17 +12,52 @@ import (
 var records = map[string]string{
 	"game.f1remoon.com.": "dig into x.game.f1remoon.com, where x = [0..9]\n_|_|_\n_|_|_\n_|_|_",
 
-	"1.game.f1remoon.com.": "_|_|_\n_|_|_\nx|_|_",
-	"2.game.f1remoon.com.": "_|_|_\n_|_|_\n_|x|_",
-	"3.game.f1remoon.com.": "_|_|_\n_|_|_\n_|_|x",
-	"4.game.f1remoon.com.": "_|_|_\nx|_|_\n_|_|_",
-	"5.game.f1remoon.com.": "_|_|_\n_|x|_\n_|_|_",
-	"6.game.f1remoon.com.": "_|_|_\n_|_|x\n_|_|_",
-	"7.game.f1remoon.com.": "x|_|_\n_|_|_\n_|_|_",
-	"8.game.f1remoon.com.": "_|x|_\n_|_|_\n_|_|_",
-	"9.game.f1remoon.com.": "_|_|x\n_|_|_\n_|_|_",
-}
 
+	"1.game.f1remoon.com.": "Continue at x.1.game.f1remoon.com!\n" +
+                                "_|_|_\n" + 
+                                "_|o|_\n" + 
+                                "x|_|_",
+
+	"2.game.f1remoon.com.": "Continue at x.2.game.f1remoon.com!\n" +
+                                "_|_|_\n" + 
+                                "_|o|_\n" + 
+                                "_|x|_",
+
+	"3.game.f1remoon.com.": "Continue at x.3.game.f1remoon.com!\n" +
+                                "_|_|_\n" + 
+                                "_|o|_\n" + 
+                                "_|_|x",
+
+	"4.game.f1remoon.com.": "Continue at x.4.game.f1remoon.com!\n" +
+                                "_|_|_\n" + 
+                                "x|o|_\n" + 
+                                "_|_|_",
+
+	"5.game.f1remoon.com.": "Continue at x.5.game.f1remoon.com!\n" +
+                                "o|_|_\n" + 
+                                "_|x|_\n" + 
+                                "_|_|_",
+
+	"6.game.f1remoon.com.": "Continue at x.6.game.f1remoon.com!\n" +
+                                "_|_|_\n" + 
+                                "_|o|x\n" + 
+                                "_|_|_",
+
+	"7.game.f1remoon.com.": "Continue at x.7.game.f1remoon.com!\n" +
+                                "x|_|_\n" + 
+                                "_|o|_\n" + 
+                                "_|_|_",
+
+	"8.game.f1remoon.com.": "Continue at x.8.game.f1remoon.com!\n" +
+                                "_|x|_\n" + 
+                                "_|o|_\n" + 
+                                "_|_|_",
+
+	"9.game.f1remoon.com.": "Continue at x.9.game.f1remoon.com!\n" +
+                                "_|_|x\n" + 
+                                "_|o|_\n" + 
+                                "_|_|_",
+}
 func parseQuery(m *dns.Msg) {
 	for _, q := range m.Question {
 		switch q.Qtype {
