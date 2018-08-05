@@ -3,3 +3,4 @@ Just dig into x.game.f1remoon.com, where x coresponds number of cell:
 7|8|9
 4|5|6
 1|2|3
+Dig into help.game.f1remoon.com if have troubles
