@@ -1,9 +1,9 @@
 You start from game.f1remoon.com.
-Every step you should add "%CELL_NUMBER%." before domain name.
+Every step you should add <%CELL_NUMBER%.> before domain name.
 For example:
 7.game.f1remoon.com.
 4.7.game.f1remoon.com.
 8.4.7.game.f1remoon.com.
 ---
-Based on Siri0n pure html tic tac toe.
+Based on Siri0n pure html tic-tac-toe.
 (C) f1remoon 2018
