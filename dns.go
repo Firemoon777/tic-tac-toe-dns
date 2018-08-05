@@ -10,8 +10,11 @@ import (
 )
 
 var records = map[string]string{
-	"game.f1remoon.com.": "dig into x.game.f1remoon.com, where x = [0..9]\n_|_|_\n_|_|_\n_|_|_",
-
+	"game.f1remoon.com.": "Let's play in tic-tac-toe with dns server!\n" +
+								"Just dig into x.game.f1remoon.com, where x = [0..9]\n" +
+								"7|8|9\n" +
+								"4|5|6\n" +
+								"1|2|3",
 
 	"1.game.f1remoon.com.": "Continue at x.1.game.f1remoon.com!\n" +
                                 "_|_|_\n" + 
@@ -57,6 +60,7 @@ var records = map[string]string{
                                 "_|_|x\n" + 
                                 "_|o|_\n" + 
                                 "_|_|_",
+
 }
 func parseQuery(m *dns.Msg) {
 	for _, q := range m.Question {
