@@ -8,13 +8,14 @@ import (
 
 	"github.com/miekg/dns"
 		"io/ioutil"
+	"net"
 )
 
-func parseQuery(m *dns.Msg) {
+func parseQuery(m *dns.Msg, ip string) {
 	for _, q := range m.Question {
 		switch q.Qtype {
 		case dns.TypeTXT:
-			log.Printf("Query for %s\n", q.Name)
+			log.Printf("/ TXT / %s / %s \n", q.Name, ip)
 			r, err := ioutil.ReadFile("./res/" + q.Name + "txt")
 			if err == nil {
 				str := string(r)
@@ -29,7 +30,7 @@ func parseQuery(m *dns.Msg) {
 				}
 			}
 		case dns.TypeA:
-			log.Printf("Query for %s\n", q.Name)
+			log.Printf("/ A / %s / %s \n", q.Name, ip)
 			rr, err := dns.NewRR(fmt.Sprintf("%s A 127.0.0.1", q.Name))
 			if err == nil {
 				m.Answer = append(m.Answer, rr)
@@ -43,9 +44,20 @@ func handleDnsRequest(w dns.ResponseWriter, r *dns.Msg) {
 	m.SetReply(r)
 	m.Compress = false
 
+	var ip_str string
+
+	if ip, ok := w.RemoteAddr().(*net.TCPAddr); ok {
+		if ip.IP.To4() != nil {
+			ip_str = ip.IP.To4().String()
+		} else {
+			ip_str = ip.IP.String()
+		}
+	}
+
+
 	switch r.Opcode {
 	case dns.OpcodeQuery:
-		parseQuery(m)
+		parseQuery(m, ip_str)
 	}
 
 	w.WriteMsg(m)
