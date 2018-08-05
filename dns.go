@@ -15,15 +15,17 @@ func parseQuery(m *dns.Msg) {
 		switch q.Qtype {
 		case dns.TypeTXT:
 			log.Printf("Query for %s\n", q.Name)
-			r, err := ioutil.ReadFile("./res/" + q.Name)
+			r, err := ioutil.ReadFile("./res/" + q.Name + "txt")
 			if err == nil {
 				str := string(r)
 				for _, s := range strings.Split(str, "\n") {
-					t := &dns.TXT{
-						Hdr: dns.RR_Header{Name: q.Name, Rrtype: dns.TypeTXT, Class: dns.ClassINET, Ttl: 0},
-						Txt: strings.Split(s, "|"),
+					if s != "" {
+						t := &dns.TXT{
+							Hdr: dns.RR_Header{Name: q.Name, Rrtype: dns.TypeTXT, Class: dns.ClassINET, Ttl: 0},
+							Txt: strings.Split(s, "|"),
+						}
+						m.Answer = append(m.Answer, t)
 					}
-					m.Answer = append(m.Answer, t)
 				}
 			}
 		case dns.TypeA:
